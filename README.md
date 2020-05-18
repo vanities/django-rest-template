@@ -58,6 +58,5 @@ $ open http://0.0.0.0:8000/docs
 See the list of [contributors](https://github.com/vanities/django-init/graphs/contributors) who participated in this project.
 
 ## Adding Python packages
-Since we are using docker so heavily, the install process for python packages is a little odd. Follow these steps...
 
 Add the package to the `requirements.txt` (if you know the version) then run.
