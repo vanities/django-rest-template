@@ -59,4 +59,4 @@ See the list of [contributors](https://github.com/vanities/django-init/graphs/co
 
 ## Adding Python packages
 
-Add the package to the `requirements.txt` (if you know the version) then run.
+Add the package to the `requirements.txt`
