@@ -20,6 +20,11 @@ services:
     ports:
       - 8000:8000
 
+  test:
+    <<: *python
+    env_file:
+      - env.test
+
   postgres:
     image: postgres:12
     environment: 
