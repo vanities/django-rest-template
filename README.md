@@ -50,7 +50,7 @@ $ docker-compose run --rm test ./manage.py test app.user.tests
 
 If the server is running execute the following command:
 ```bash
-$ open http://0.0.0.0:8000/docs
+$ open http://127.0.0.1:8000/docs
 ```
 
 ### Authors
