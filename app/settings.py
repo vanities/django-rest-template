@@ -1,9 +1,10 @@
-import os
 import logging.config
+import os
+
 import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
 
-project_root = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(__file__)
 
 
 def get_env_var(var_name):
@@ -16,7 +17,7 @@ def get_env_var(var_name):
         else:
             return env_var
     except KeyError:
-        raise ImproperlyConfigured("Set the {} environment variable".format(var_name))
+        raise ImproperlyConfigured(f"Set the {var_name} environment variable")
 
 
 # ENVIRONMENT
@@ -27,7 +28,7 @@ ENVIRONMENT = get_env_var("ENVIRONMENT")
 # STATIC DIRS
 # ------------------------------------------------------------------------------
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 CONTENT_DIR = os.path.join(BASE_DIR, "static")
 
 
@@ -245,7 +246,7 @@ SILKY_INTERCEPT_PERCENT = int(get_env_var("SILKY_INTERCEPT_PERCENT"))
 SILKY_PYTHON_PROFILER = True
 SILKY_AUTHENTICATION = True  # User must login
 SILKY_AUTHORISATION = True  # User must have permissions
-SILKY_PERMISSIONS = lambda user: user.is_superuser
+# SILKY_PERMISSIONS = lambda user: user.is_superuser
 SILKY_META = True  # see what effect Silk is having on the request/response time
 SILKY_ANALYZE_QUERIES = True
 
