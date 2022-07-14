@@ -1,9 +1,9 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -ex
 
 echo "==> making migrations database..."
-
 yes | ./manage.py makemigrations
-yes | ./manage.py makemigrations app user
 ./manage.py migrate
 
 echo "==> done!"

@@ -76,9 +76,14 @@ DJANGO_APPS = [
     "django.forms",
 ]
 
-THIRD_PARTY_APPS = ["whitenoise.runserver_nostatic"]
+THIRD_PARTY_APPS = [
+    "whitenoise.runserver_nostatic",
+    "rest_framework_simplejwt.token_blacklist",
+    "solo",
+    "silk",
+]
 
-LOCAL_APPS = ["app", "app.user"]
+LOCAL_APPS = ["app", "user"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -87,6 +92,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # https://docs.djangoproject.com/en/1.10/topics/http/middleware/
 
 MIDDLEWARE = [
+    "silk.middleware.SilkyMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -101,6 +107,8 @@ MIDDLEWARE = [
 # CORS Configuration
 cors = os.getenv("CORS_ORIGIN_ALLOW_ALL")
 CORS_ORIGIN_ALLOW_ALL = cors == "True"
+if os.getenv("CORS_ORIGIN_WHITELIST"):
+    CORS_ORIGIN_WHITELIST = os.getenv("CORS_ORIGIN_WHITELIST").split(" ")
 
 
 # URL Configuration
@@ -230,6 +238,17 @@ logging.config.dictConfig(LOGGING)
 
 AUTH_USER_MODEL = "user.User"
 
+# Silky
+# ------------------------------------------------------------------------------
+#
+SILKY_INTERCEPT_PERCENT = int(get_env_var("SILKY_INTERCEPT_PERCENT"))
+SILKY_PYTHON_PROFILER = True
+SILKY_AUTHENTICATION = True  # User must login
+SILKY_AUTHORISATION = True  # User must have permissions
+SILKY_PERMISSIONS = lambda user: user.is_superuser
+SILKY_META = True  # see what effect Silk is having on the request/response time
+SILKY_ANALYZE_QUERIES = True
+
 
 # Prints
 # ------------------------------------------------------------------------------
@@ -237,5 +256,7 @@ AUTH_USER_MODEL = "user.User"
 
 print("ENVIRONMENT is", ENVIRONMENT)
 print("CORS_ORIGIN_ALLOW_ALL is", CORS_ORIGIN_ALLOW_ALL)
+if os.getenv("CORS_ORIGIN_WHITELIST"):
+    print("CORS_ORIGIN_WHITELIST is", CORS_ORIGIN_WHITELIST)
 print("DEBUG is", DEBUG)
 print("SSL is", SECURE_SSL_REDIRECT)

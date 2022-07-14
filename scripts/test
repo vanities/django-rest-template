@@ -1,5 +1,12 @@
-#! /bin/bash -ev
+#!/bin/bash
 
-python manage.py makemigrations
-python manage.py migrate
-python manage.py test "$@" --parallel
+set -ex
+
+echo "==> making migrations database..."
+./manage.py makemigrations
+./manage.py migrate
+
+echo "==> testing in parallel..."
+./manage.py test "$@" --parallel
+
+echo "==> done!"

@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.9"
 
 services:
   python: &python
@@ -16,9 +16,11 @@ services:
 
   django:
     <<: *python
-    command: bash -c "./manage.py migrate && ./manage.py runserver 0.0.0.0:8000"
+    command: bash -c "./scripts/wait_for_postgres && \
+      ./scripts/make_and_migrate && \
+      ./manage.py runserver 0.0.0.0:5000"
     ports:
-      - 8000:8000
+      - 5000:5000
 
   test:
     <<: *python
@@ -26,8 +28,8 @@ services:
       - env.test
 
   postgres:
-    image: postgres:12
-    environment: 
+    image: postgres:13
+    environment:
       - POSTGRES_USER=postgres_user
       - POSTGRES_PASSWORD=postgres_password
       - POSTGRES_DB=postgres_db
