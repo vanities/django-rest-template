@@ -1,17 +1,14 @@
 # Django Initialization
 
-An admin ui to manage data from a browser ([local](http://127.0.0.1:8000)) and an API to expose data.
+A quick way to up a django server. Has an admin ui to manage data from a browser ([local](http://127.0.0.1:5000)) and an API to expose data. Includes Singleton models for configuration using django-solo, static file uploading with whitenoise, performance monitoring with django-silk, and jwt auth using djangorestframework-simplejwt. Has pre-commit hooks to lint and fix and a setup for github actions to run tests.
 
 ## Requirements:
 1. [pre-commit](https://pre-commit.com/)
-. [docker & docker-compose][https://www.docker.com/products/docker-desktop/]
-
+2. [docker & docker-compose](https://www.docker.com/products/docker-desktop/)
 
 ## Installation:
 
-1. Get Docker
-
-2. Clone the repository
+1. Clone the repository
 ```bash
 $ git clone https://github.com/vanities/django-init
 $ cd django-init
@@ -24,6 +21,11 @@ Generally, we use a [`Makefile`](https://github.com/vanities/django-init/blob/ma
 Quickstart with Docker:
 ```bash
 $ make up
+```
+
+Quit the server:
+```bash
+$ make down
 ```
 
 Seed the database:
@@ -47,7 +49,7 @@ $ docker-compose run test python manage.py test
 
 To run a single test file:
 ```bash
-$ docker-compose run --rm test ./manage.py test app.user.tests
+$ docker-compose run --rm test ./manage.py test user.tests
 ```
 
 ## Endpoints:
