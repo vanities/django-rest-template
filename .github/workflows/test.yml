@@ -1,0 +1,16 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  test_django:
+    name: Test Django
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Run Tests
+        run: make test
