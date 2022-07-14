@@ -2,6 +2,10 @@
 
 An admin ui to manage data from a browser ([local](http://127.0.0.1:8000)) and an API to expose data.
 
+## Requirements:
+1. [pre-commit](https://pre-commit.com/)
+. [docker & docker-compose][https://www.docker.com/products/docker-desktop/]
+
 
 ## Installation:
 
