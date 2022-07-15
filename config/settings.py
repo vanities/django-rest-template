@@ -84,7 +84,7 @@ THIRD_PARTY_APPS = [
     "silk",
 ]
 
-LOCAL_APPS = ["app", "user"]
+LOCAL_APPS = ["users"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -116,7 +116,7 @@ if os.getenv("CORS_ORIGIN_WHITELIST"):
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/1.10/ref/settings/#root-urlconf
 
-ROOT_URLCONF = "app.urls"
+ROOT_URLCONF = "config.urls"
 
 
 # TEMPLATE CONFIGURATION
@@ -145,7 +145,7 @@ TEMPLATES = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/1.10/ref/settings/#wsgi-application
 
-WSGI_APPLICATION = "app.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -237,7 +237,7 @@ LOGGING = {
 logging.config.dictConfig(LOGGING)
 
 
-AUTH_USER_MODEL = "user.User"
+AUTH_USER_MODEL = "users.User"
 
 # Silky
 # ------------------------------------------------------------------------------
