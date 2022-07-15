@@ -14,7 +14,7 @@ $ git clone https://github.com/vanities/django-init
 $ cd django-init
 ```
 
-## Running the web/API:
+## Running the web API:
 
 Generally, we use a [`Makefile`](https://github.com/vanities/django-init/blob/master/Makefile) as a task manager to wrap docker commands, read it to know what the common tasks are.
 
@@ -28,23 +28,16 @@ Quit the server:
 $ make down
 ```
 
-Seed the database:
+Drop and Seed the database:
 ```bash
 $ make fresh
 ```
 
-With python:
-```bash
-$ python manage.py runserver
-```
-
 ## Testing:
 
-To run once with Docker:
+To run all of the tests once with Docker:
 ```bash
 $ make test
-# or
-$ docker-compose run test python manage.py test
 ```
 
 To run a single test file:
@@ -52,14 +45,10 @@ To run a single test file:
 $ docker-compose run --rm test ./manage.py test user.tests
 ```
 
-## Endpoints:
-
-If the server is running execute the following command:
+## Adding apps
 ```bash
-$ open http://127.0.0.1:8000/docs
+$ docker-compose run --rm python ./manage.py startapp posts
 ```
-
-### Authors
 
 See the list of [contributors](https://github.com/vanities/django-init/graphs/contributors) who participated in this project.
 
