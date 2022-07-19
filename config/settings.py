@@ -1,5 +1,6 @@
 import logging.config
 import os
+from datetime import timedelta
 
 import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
@@ -230,7 +231,7 @@ LOGGING = {
     },
     "loggers": {
         "": {"handlers": ["root"], "level": os.getenv("LOG_LEVEL", "warning").upper()},
-        "django.db.backends": {"level": os.getenv("BACKEND_LOG_LEVEL", "DEBUG")},
+        "django.db.backends": {"level": os.getenv("DATABASE_LOG_LEVEL", "INFO")},
         "django.request": {"level": os.getenv("LOG_LEVEL", "DEBUG").upper()},
     },
 }
@@ -249,6 +250,35 @@ SILKY_AUTHORISATION = True  # User must have permissions
 # SILKY_PERMISSIONS = lambda user: user.is_superuser
 SILKY_META = True  # see what effect Silk is having on the request/response time
 SILKY_ANALYZE_QUERIES = True
+
+# SIMPLE JWT
+# ------------------------------------------------------------------------------
+#
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=7),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=365),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": False,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": None,
+    "AUDIENCE": None,
+    "ISSUER": None,
+    "JWK_URL": None,
+    "LEEWAY": 0,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+    "USER_AUTHENTICATION_RULE": (
+        "rest_framework_simplejwt.authentication.default_user_authentication_rule"
+    ),
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+    "TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
+    "JTI_CLAIM": "jti",
+}
 
 
 # Prints

@@ -1,5 +1,9 @@
 .PHONY: build up down migrate seed_db test psql shell fresh migrate seed_db reset_db wait_for_postgres upgrade_all_python_dependencies
 
+init:
+	pip3 install pre-commit
+	make build
+	make fresh
 
 build:
 	docker-compose build
@@ -38,6 +42,9 @@ reset_db: wait_for_postgres
 
 wait_for_postgres:
 	docker-compose run --rm python ./scripts/wait_for_postgres
+
+startapp:
+	docker-compose run --rm python ./manage.py startapp
 
 # WARNING, this will upgrade everything to the latest version!
 upgrade_all_python_dependencies:
