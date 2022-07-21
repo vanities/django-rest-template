@@ -2,6 +2,7 @@
 
 init:
 	pip3 install pre-commit
+	pre-commit install
 	make build
 	make fresh
 
