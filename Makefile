@@ -52,3 +52,6 @@ upgrade_all_python_dependencies:
 	docker-compose run --rm python bash -c "sed -i 's/==/>=/' requirements.txt && \
 	 										pip install --upgrade --force-reinstall -r requirements.txt && \
 											pip freeze | sed 's/>=/==/' > requirements.txt"
+
+graph_models:
+	docker-compose run --rm python ./manage.py graph_models -a -g -o models.png
