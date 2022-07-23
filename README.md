@@ -1,6 +1,23 @@
 # Django Initialization
 
-A quick way to up a django server. Has an admin ui to manage data from a browser ([local](http://127.0.0.1:5000)) and an API to expose data. Includes Singleton models for configuration using django-solo, static file uploading with whitenoise, performance monitoring with django-silk, and jwt auth using djangorestframework-simplejwt. Has pre-commit hooks to lint and fix and a setup for github actions to run tests. See the admin on heroku here: [https://django-rest-template.herokuapp.com/](https://django-rest-template.herokuapp.com/).
+A quick way to up a django rest server. Has an admin ui to manage data from a browser ([local](http://127.0.0.1:5000)) and an API to expose data.
+Superuser/staff user and seed creation is in [scripts/seed_database](https://github.com/vanities/django-rest-template/blob/master/scripts/seed_database).
+
+Username: **admin**<br>
+Password: **password123**
+
+See the admin on heroku here: [https://django-rest-template.herokuapp.com/](https://django-rest-template.herokuapp.com/).
+
+## Packages:
+1. Singleton models for configuration using [django-solo](https://github.com/lazybird/django-solo).
+2. Static file uploading with [whitenoise](https://github.com/evansd/whitenoise).
+3. Performance monitoring with [django-silk](https://github.com/jazzband/django-silk).
+4. JWT authentication using [djangorestframework-simplejwt](https://github.com/jazzband/djangorestframework-simplejwt).
+5. Has [pre-commit](https://github.com/pre-commit/pre-commit) hooks to lint and fix files using Black and flake8.
+6. Setup for [github actions](https://github.com/features/actions) to run tests.
+7. Model graph visualization with [pygraphviz](https://gist.github.com/rg3915/35e999a442a8955e455b).
+8. CORS handling based on environment variables by [django-cors-headers](https://github.com/adamchainz/django-cors-headers).
+9. Abstact user models set up in `users/`
 
 ## Requirements:
 1. [pre-commit](https://pre-commit.com/)
