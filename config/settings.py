@@ -52,7 +52,7 @@ DEBUG = get_env_var("DEBUG")
 # https://docs.djangoproject.com/en/1.10/ref/settings/#admins
 # https://docs.djangoproject.com/en/1.10/ref/settings/#managers
 
-ADMINS = (("""Adam Aaron Mischke""", "mischke@protonmail.com"),)
+ADMINS = (("""Admin User""", "admin@django.com"),)
 
 MANAGERS = ADMINS
 

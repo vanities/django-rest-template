@@ -5,19 +5,19 @@ import django
 django.setup()
 
 
-from users.models import User
+from users.models import User  # noqa: <Error>
 
 
 class Seeder:
     def create_superuser(
-        self, username="admin", password="password123", email="mischke@protonmail.com"
+        self, username="admin", password="password123", email="admin@django.com"
     ):
         self.user = User.objects.create_user(
             username=username,
             password=password,
             email=email,
-            first_name="Adam",
-            last_name="Mischke",
+            first_name="Admin",
+            last_name="User",
             is_staff=True,
             is_superuser=True,
         )
